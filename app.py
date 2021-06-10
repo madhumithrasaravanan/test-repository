@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask
 from flask_restful import Api #Resource and Api are two important factors where the Api would understand that it is using a particular resource. If api is student and then the resource is student
 from flask_jwt import JWT
@@ -9,9 +11,11 @@ from resources.item import Item,ItemsList
 
 from resources.store import Store,StoresList
 
+
+
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db' #To tell the SQLAlchemy where to look for 
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL','sqlite:///data.db') #To tell the SQLAlchemy where to look for 
 app.secret_key="jose"
 api=Api(app) 
 
