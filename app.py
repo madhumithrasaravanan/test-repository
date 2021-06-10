@@ -15,9 +15,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db' #To tell the SQLAlch
 app.secret_key="jose"
 api=Api(app) 
 
-@app.before_first_request #This will create the tables on their own 
-def create_tables():
-    db.create_all()
 
 
 jwt = JWT(app, authenticate, identity) #/auth
